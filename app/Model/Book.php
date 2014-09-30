@@ -11,9 +11,9 @@ class Book extends AppModel
 			'conditions' => array('user_id' => $request_token['user_id'])
 			));
 		$numOfData = count($data);
+
 		if($numOfData === 0){
 			//データなし
-			//echo 'このユーザーのデータはありません';
 			$bookdata = null;
 		}else{
 			$k = 0;
@@ -36,10 +36,11 @@ class Book extends AppModel
 				$firstI = $numOfData - 1;
 				$endI = $numOfData - $page['numOfPage'];
 			}
-			for ($i=$firstI; $i >= $endI; $i--){
+			for ($i=$firstI; $i >= $endI && $i >= 0; $i--){
 				$tmp = $data[$i];
 				$tmp1 = $tmp['Book'];  //Model名が付いてしまうようです。
 				$tmp2 = array(
+					'book_id' => $tmp1['id'],
 					'image_url' => $tmp1['image_url'],
 					'title' => $tmp1['name'],
 					'price' => $tmp1['price'],
@@ -52,6 +53,7 @@ class Book extends AppModel
 			}
 			$bookdata += array('numOfBooks' => $numOfData);
 		}
+
 		return $bookdata;
 	}
 

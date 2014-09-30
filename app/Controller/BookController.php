@@ -6,20 +6,20 @@ class BookController extends AppController
 	function index()
 	{
 		//test用アカウント
-		$request_token = array('user_id' => 3,
+		$request_token = array('user_id' => 33,
 								'mail_address' => '01234@567.com',
 								'password' => '01234567');
 		/*新規書籍登録*/
-		$data3 = $this->Book->regist($request_token,"nyanko dayo",12000,"2014/10/13",null);
-		$this->set('data3',$data3);
+		//$data3 = $this->Book->regist($request_token,"nyanko dayo",12000,"2014/10/13",null);
+		//$this->set('data3',$data3);
 		/*一覧取得*/
 		$page = array('begin' => 5, 'numOfPage' => 10, 'position' => 'latest');
 		//getの返り値は連想配列で、('image_url','name','price','purchase_date')
 		$data4 = $this->Book->get($request_token,$page);
 		$this->set('data4',$data4);
 		/*書籍更新*/
-		$data5 = $this->Book->update($request_token,10,'hoshi no shima no nyanko',1000,'2014/12/12',null);
-		$this->set('data5',$data5);
+		//$data5 = $this->Book->update($request_token,10,'hoshi no shima no nyanko',1000,'2014/12/12',null);
+		//$this->set('data5',$data5);
 	}
 	public function test()
 	{
@@ -46,9 +46,11 @@ class BookController extends AppController
 			$errorMessage = null;
 		}else{
 			$status = 'ng';
-			$errorMessage = "this user don't have any books.";
+			$errorMessage = "this user has no book.";
 		}
-		$result = ['status' => $status,'data' => $bookData, 'error' => $errorMessage];
+		$result = array('status' => $status,
+						'data' => $bookData,
+			 			'error' => $errorMessage);
 		$this->viewClass = 'Json';
         $this->set(compact('result'));
         $this->set('_serialize', 'result');
