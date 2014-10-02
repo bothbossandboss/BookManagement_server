@@ -6,9 +6,9 @@ class Account extends AppModel
 	function regist($mail_address, $password)
 	{
 		//新規登録メールアドレスかどうか確認。
-		$isThisNewData = $this->find('all',array(
+		$is_this_new_data = $this->find('all',array(
 			'conditions' => array('mail_address' => $mail_address)));
-		if(count($isThisNewData) === 0){
+		if(count($is_this_new_data) === 0){
 			$this->set(array(
 				'mail_address' => $mail_address,
 				'password' => $password

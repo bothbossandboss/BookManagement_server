@@ -37,7 +37,7 @@ class AccountController extends AppController
 		$registAccount = $this->Account->regist($registMailAddress, $registPassword);
 		if($registAccount == null){
 			$status = 'ng';
-			$errorMessage = 'this account already exsit.';
+			$errorMessage = 'this account already exsits.';
 		}else{
 			$status = 'ok';
 			$errorMessage = null;

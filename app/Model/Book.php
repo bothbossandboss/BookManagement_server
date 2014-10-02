@@ -60,12 +60,12 @@ class Book extends AppModel
 	//新規書籍登録
 	function regist($request_token, $book_name, $price, $purchase_date, $image)
 	{
-		$isThisNewData = $this->find('all',array(
+		$is_this_new_data = $this->find('all',array(
 			'conditions' => array(
 				'user_id' => $request_token['user_id'],
 				'name' => $book_name
 				)));
-		if(count($isThisNewData) === 0){
+		if(count($is_this_new_data) === 0){
 			$this->set(array(
 				'user_id' => $request_token['user_id'],
 				'name' => $book_name,
